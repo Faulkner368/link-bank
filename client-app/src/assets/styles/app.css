@@ -2,7 +2,12 @@
 @import url("theme.css");
 @import url("mixins.css");
 @import url("notfound.css");
+@import url("navbar.css");
 
 .v-main__wrap {
     width: 100%;
+}
+
+.v-main {
+    margin-top: 100px;
 }

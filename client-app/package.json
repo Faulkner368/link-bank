@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "serve": "vue-cli-service serve --mode development --host localhost --port 8080",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "buildprod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "formdata-polyfill": "^3.0.17",
     "vue": "^2.6.4",
     "vue-class-component": "^6.0.0",

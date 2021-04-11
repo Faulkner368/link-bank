@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Component from "vue-class-component";
-import HeaderSection from "@/components/HeaderSection";
+import NavBar from "@/components/NavBar";
 
 Component.registerHooks([
   "beforeRouteEnter",
@@ -8,7 +8,7 @@ Component.registerHooks([
   "beforeRouteUpdate",
 ]);
 
-@Component({ components: { HeaderSection } })
+@Component({ components: { NavBar } })
 export default class App extends Vue {
 
 }

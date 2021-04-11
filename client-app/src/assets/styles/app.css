@@ -1,0 +1,8 @@
+@import url("reset.css");
+@import url("theme.css");
+@import url("mixins.css");
+@import url("notfound.css");
+
+.v-main__wrap {
+    width: 100%;
+}

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Bookmarks;
 using Domain;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -10,23 +12,23 @@ namespace API.Controllers
 {
     public class BookmarksController : BaseApiController
     {
-        private readonly DataContext _context;
+        private readonly IMediator _mediator;
 
-        public BookmarksController(DataContext context)
+        public BookmarksController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Bookmark>>> GetBookmarks()
         {
-            return await _context.Bookmarks.ToListAsync();
+            return await _mediator.Send(new List.Query());
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Bookmark>> GetBookmark(Guid id)
         {
-            return await _context.Bookmarks.FindAsync(id);
+            return Ok();
         }
     }
 }

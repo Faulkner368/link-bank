@@ -7,7 +7,19 @@ export default class BookmarkService {
         return await this.client.bookmarksAll();
     }
 
-    public async bookmark(id: string): Promise<Bookmark> {
-        return await this.client.bookmarks(id);
+    public async bookmarkById(id: string): Promise<Bookmark> {
+        return await this.client.bookmarks2(id);
+    }
+
+    public async createBookmark(bookmark: Bookmark): Promise<void> {
+        return await this.client.bookmarks(bookmark);
+    }
+
+    public async editBookmark(bookmark: Bookmark): Promise<void> {
+        return await this.client.bookmarks3(bookmark.id!, bookmark);
+    }
+
+    public async deleteBookmark(id: string): Promise<void> {
+        return await this.client.bookmarks4(id);
     }
 }

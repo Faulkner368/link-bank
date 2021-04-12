@@ -35,8 +35,13 @@ const router = new Router({
       // },
     },
     {
-      path: "/bookmark/form/",
-      name: "BookmarkForm",
+      path: "/bookmark/create",
+      name: "BookmarkCreate",
+      component: BookmarkForm,
+    },
+    {
+      path: "/bookmark/edit/:id",
+      name: "BookmarkEdit",
       component: BookmarkForm,
     }
   ],

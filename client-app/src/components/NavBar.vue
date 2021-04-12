@@ -5,7 +5,7 @@
       <v-toolbar-title @click="goTo('/')">Link Bank</v-toolbar-title>
       <v-toolbar-title @click="goTo('/bookmarks')" class="middle-menu-item">Bookmarks</v-toolbar-title>
       <v-toolbar-title>
-        <v-btn color="success" @click="goTo('/bookmark/form')">create</v-btn>
+        <v-btn color="success" @click="goTo('/bookmark/create')">create</v-btn>
       </v-toolbar-title>
     </v-container>
   </v-app-bar>

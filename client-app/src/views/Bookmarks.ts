@@ -11,4 +11,8 @@ export default class Bookmarks extends Vue {
     public async mounted() {
         this.bookmarks = await this.bookmarkService.bookmarks();
     }
+
+    public processDate(dateCreated: string) {
+        return String(dateCreated).substring(0, 16);
+    }
 }

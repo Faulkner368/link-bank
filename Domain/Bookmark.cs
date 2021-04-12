@@ -4,7 +4,6 @@ namespace Domain
 {
     public class Bookmark
     {
-
         public Guid Id { get; set; }
         public string Title { get; set; }
 

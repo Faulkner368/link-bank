@@ -1,6 +1,9 @@
 <template>
     <section class="home">
-        <h1>Home Page</h1>
+        <div class="home-welcome">
+            <h1>Welcome to LinkBank</h1>
+            <v-btn :to="{ name: 'Bookmarks' }" color="success">bookmarks</v-btn>
+        </div>
     </section>
 </template>
 <script lang="ts" src="./HomePage.ts"></script>

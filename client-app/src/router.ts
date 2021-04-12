@@ -3,7 +3,7 @@ import Router from "vue-router";
 import { AppMixin } from "@/mixins/AppMixins";
 import HomePage from "@/views/HomePage";
 import Bookmarks from "@/views/Bookmarks";
-import Bookmark from "@/views/Bookmark";
+import BookmarkForm from "@/views/BookmarkForm";
 import NotFound from "./notfound/NotFound.vue";
 
 Vue.use(Router);
@@ -26,11 +26,6 @@ const router = new Router({
       path: "/bookmarks",
       name: "Bookmarks",
       component: Bookmarks,
-    },
-    {
-      path: "/bookmark",
-      name: "Bookmark",
-      component: Bookmark,
       // beforeEnter: (to, from, next) => {
       //   if (!AppMixin.methods.isProduction()) {
       //     next();
@@ -38,6 +33,11 @@ const router = new Router({
       //     router.push({ name: "HomePage"});
       //   }
       // },
+    },
+    {
+      path: "/bookmark/form/",
+      name: "BookmarkForm",
+      component: BookmarkForm,
     }
   ],
 });

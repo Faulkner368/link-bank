@@ -1,0 +1,21 @@
+.bookmark-card {
+    margin-bottom: 20px;
+}
+
+.bookmark-card-actions {
+    margin: 0 10px;
+}
+
+.tags {
+    width: 50%;
+}
+
+.bookmark-link-btn {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bookmark-edit-btn {
+    margin-right: 5px;
+}

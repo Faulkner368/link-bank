@@ -20,7 +20,11 @@ export default class BookmarkForm extends Vue {
     public async mounted() {
         if (this.$route.params.id !== undefined) {
             this.editMode = true;
-            this.bookmark = await this.bookmarkService.Bookmarks.details(this.$route.params.id);
+            try {
+                this.bookmark = await this.bookmarkService.Bookmarks.details(this.$route.params.id);
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
@@ -31,7 +35,13 @@ export default class BookmarkForm extends Vue {
         this.isSaving = true;
         this.bookmark.id = uuidv4();
         console.log(this.bookmark);
-        await this.bookmarkService.Bookmarks.create(this.bookmark);
+
+        try {
+            await this.bookmarkService.Bookmarks.create(this.bookmark);
+        } catch (error) {
+            console.log(error);
+        }
+
         this.isSaving = false;
         this.$router.push({ name: "Bookmarks" });
     }
@@ -41,7 +51,13 @@ export default class BookmarkForm extends Vue {
      */
     public async editBookmark(): Promise<void> {
         this.isSaving = true;
-        await this.bookmarkService.Bookmarks.edit(this.bookmark);
+
+        try {
+            await this.bookmarkService.Bookmarks.edit(this.bookmark);
+        } catch (error) {
+            console.log(error);
+        }
+
         this.isSaving = false;
         this.$router.push({ name: "Bookmarks" });
     }

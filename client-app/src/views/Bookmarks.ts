@@ -10,24 +10,14 @@ export default class Bookmarks extends Vue {
     private isDeleting: boolean = false;
     private isLoading: boolean = false;
 
-    public async mounted() {
-        await this.loadBookmarks();
+    public constructor() {
+        super();
+        // Get bookmarks from Vuex state management
+        this.bookmarks = this.$store.getters["BookmarkStore/bookmarks"];
     }
 
     public getBookmarks(): IterableIterator<Bookmark> {
         return this.bookmarks.values();
-    }
-
-    public async loadBookmarks() {
-        this.isLoading = true;
-        const bookmarks = await this.bookmarkService.Bookmarks.list();
-
-        bookmarks.forEach(bookmark => {
-            bookmark.dateCreated = bookmark.dateCreated!.split("T")[0];
-            this.bookmarks.set(bookmark.id!, bookmark);
-        });
-
-        this.isLoading = false;
     }
 
     /**
@@ -39,7 +29,13 @@ export default class Bookmarks extends Vue {
         if (remove) {
             this.isDeleting = true;
             this.bookmarks.delete(bookmarkId);
-            await this.bookmarkService.Bookmarks.delete(bookmarkId);
+
+            try {
+                await this.bookmarkService.Bookmarks.delete(bookmarkId);
+            } catch (error) {
+                console.log(error);
+            }
+
             this.isDeleting = false;
         }
     }

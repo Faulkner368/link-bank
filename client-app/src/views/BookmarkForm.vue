@@ -11,35 +11,34 @@
             name="title"
             label="Title"
             id="title"
+            v-model="bookmark.title"
           ></v-text-field>
           <v-textarea
             outlined
             name="description"
             label="Description"
             id="description"
+            v-model="bookmark.description"
           ></v-textarea>
           <v-text-field
             outlined
             name="url"
             label="Url"
             id="url"
+            v-model="bookmark.url"
           ></v-text-field>
           <v-text-field
             outlined
             name="tags"
             label="Tags"
             id="tags"
-          ></v-text-field>
-          <v-text-field
-            outlined
-            name="date-created"
-            label="Date Created"
-            id="date-created"
+            v-model="bookmark.tags"
           ></v-text-field>
         </v-form>
         <v-card-actions class="bookmark-form-actions">
           <v-btn color="grey" :to="{ name: 'Bookmarks' }">cancel</v-btn>
-          <v-btn color="success">submit</v-btn>
+          <v-btn v-if="true" @click="createBookmark()" color="success">create</v-btn>
+          <v-btn v-if="false" @click="editBookmark()" color="success">edit</v-btn>
         </v-card-actions>
       </v-card>
     </v-col>

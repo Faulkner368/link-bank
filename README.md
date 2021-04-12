@@ -16,6 +16,7 @@ LinkBank is a bookmark manager project for demonstration
 - [ ] Add pagination and filtering
 - [ ] Prep for production
 - [ ] Deploy to [Heroku](https://www.heroku.com/)
+- [ ] Document code
 
 ## Frontend
 - Node
@@ -34,3 +35,5 @@ LinkBank is a bookmark manager project for demonstration
 - [ ] Add client side filtering and sorting
 - [ ] Prep for production
 - [ ] Deploy to [Netlify](https://www.netlify.com/)
+- [ ] Document code
+- [ ] Audit module vulnerabilities

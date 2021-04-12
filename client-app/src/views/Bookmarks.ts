@@ -1,4 +1,4 @@
-import { Bookmark } from "@/api/bookmark-api";
+import Bookmark from "@/types/Bookmark";
 import BookmarkService from "@/services/bookmarkService";
 import Vue from "vue";
 import Component from "vue-class-component";
@@ -20,7 +20,7 @@ export default class Bookmarks extends Vue {
 
     public async loadBookmarks() {
         this.isLoading = true;
-        const bookmarks = await this.bookmarkService.bookmarks();
+        const bookmarks = await this.bookmarkService.Bookmarks.list();
 
         bookmarks.forEach(bookmark => {
             bookmark.dateCreated = bookmark.dateCreated!.split("T")[0];
@@ -39,7 +39,7 @@ export default class Bookmarks extends Vue {
         if (remove) {
             this.isDeleting = true;
             this.bookmarks.delete(bookmarkId);
-            await this.bookmarkService.deleteBookmark(bookmarkId);
+            await this.bookmarkService.Bookmarks.delete(bookmarkId);
             this.isDeleting = false;
         }
     }

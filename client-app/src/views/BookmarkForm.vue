@@ -3,7 +3,7 @@
     <v-col cols="6" class="bookmark-form-col">
       <v-card>
         <v-card-title>
-          <h4>Add / Edit Bookmark</h4>
+          <h4>{{ editMode ? "Edit" : "Create" }} Bookmark</h4>
         </v-card-title>
         <v-form class="bookmark-form">
           <v-text-field
@@ -34,11 +34,21 @@
             id="tags"
             v-model="bookmark.tags"
           ></v-text-field>
+          <v-overlay :value="isSaving">
+            <v-progress-circular
+              indeterminate
+              color="rgb(240, 42, 115)"
+            ></v-progress-circular>
+          </v-overlay>
         </v-form>
         <v-card-actions class="bookmark-form-actions">
           <v-btn color="grey" :to="{ name: 'Bookmarks' }">cancel</v-btn>
-          <v-btn v-if="true" @click="createBookmark()" color="success">create</v-btn>
-          <v-btn v-if="false" @click="editBookmark()" color="success">edit</v-btn>
+          <v-btn v-if="!editMode" @click="createBookmark()" color="success"
+            >create</v-btn
+          >
+          <v-btn v-if="editMode" @click="editBookmark()" color="success"
+            >edit</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-col>

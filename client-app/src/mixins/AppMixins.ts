@@ -23,9 +23,9 @@ export const AppMixin = {
          * A sleep function, waits for as many milliseconds as is input
          * @param ms how long the function will sleep for, in milliseconds
          */
-        sleep(ms: number) {
+        async sleep(ms: number) {
             const seconds = ms * 1000;
-            return new Promise(resolve => setTimeout(resolve, seconds));
+            return await new Promise(resolve => setTimeout(resolve, seconds));
         }
     }
 };

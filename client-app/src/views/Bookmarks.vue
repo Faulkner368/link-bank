@@ -3,7 +3,7 @@
     <v-row no-gutter>
       <v-col cols="7">
         <v-card
-          v-for="bookmark in bookmarks"
+          v-for="bookmark in getBookmarks()"
           :key="bookmark.id"
           class="bookmark-card"
           elevation="8"
@@ -14,7 +14,7 @@
           <v-card-text>
             <p>{{ bookmark.description }}</p>
             <p>{{ bookmark.url }}</p>
-            <p>Added: {{ processDate(bookmark.dateCreated) }}</p>
+            <p title="Date created in format yyyy-mm-dd">Added: {{ bookmark.dateCreated }}</p>
           </v-card-text>
           <hr />
           <v-card-actions class="bookmark-card-actions">
@@ -56,7 +56,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-overlay :value="isDeleting">
+    <v-overlay :value="isDeleting || isLoading">
       <v-progress-circular indeterminate color="white"></v-progress-circular>
     </v-overlay>
   </section>

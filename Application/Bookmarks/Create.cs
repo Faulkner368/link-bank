@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Domain;
@@ -23,6 +24,7 @@ namespace Application.Bookmarks
 
             public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
             {
+                request.Bookmark.DateCreated = DateTime.UtcNow;
                 _context.Bookmarks.Add(request.Bookmark);
 
                 await _context.SaveChangesAsync();

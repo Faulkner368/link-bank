@@ -286,7 +286,7 @@ export class Bookmark implements IBookmark {
     title?: string | undefined;
     description?: string | undefined;
     url?: string | undefined;
-    dateCreated?: Date;
+    dateCreated?: string;
     tags?: string | undefined;
 
     constructor(data?: IBookmark) {
@@ -304,7 +304,7 @@ export class Bookmark implements IBookmark {
             this.title = _data["title"];
             this.description = _data["description"];
             this.url = _data["url"];
-            this.dateCreated = _data["dateCreated"] ? new Date(_data["dateCreated"].toString()) : <any>undefined;
+            this.dateCreated = _data["dateCreated"] ? _data["dateCreated"].toString() : <any>undefined;
             this.tags = _data["tags"];
         }
     }
@@ -322,7 +322,7 @@ export class Bookmark implements IBookmark {
         data["title"] = this.title;
         data["description"] = this.description;
         data["url"] = this.url;
-        data["dateCreated"] = this.dateCreated ? this.dateCreated.toISOString() : <any>undefined;
+        data["dateCreated"] = this.dateCreated ? this.dateCreated : <any>undefined;
         data["tags"] = this.tags;
         return data; 
     }
@@ -333,7 +333,7 @@ export interface IBookmark {
     title?: string | undefined;
     description?: string | undefined;
     url?: string | undefined;
-    dateCreated?: Date;
+    dateCreated?: string;
     tags?: string | undefined;
 }
 

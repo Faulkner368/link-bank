@@ -5,16 +5,29 @@ import Component from "vue-class-component";
 
 @Component
 export default class Bookmarks extends Vue {
-    private bookmarks: Bookmark[] = [];
+    private bookmarks: Map<string, Bookmark> = new Map<string, Bookmark>();
     private bookmarkService: BookmarkService = new BookmarkService();
     private isDeleting: boolean = false;
+    private isLoading: boolean = false;
 
     public async mounted() {
-        this.bookmarks = await this.bookmarkService.bookmarks();
+        await this.loadBookmarks();
     }
 
-    public processDate(dateCreated: string): string {
-        return String(dateCreated).substring(0, 16);
+    public getBookmarks(): IterableIterator<Bookmark> {
+        return this.bookmarks.values();
+    }
+
+    public async loadBookmarks() {
+        this.isLoading = true;
+        const bookmarks = await this.bookmarkService.bookmarks();
+
+        bookmarks.forEach(bookmark => {
+            bookmark.dateCreated = bookmark.dateCreated!.split("T")[0];
+            this.bookmarks.set(bookmark.id!, bookmark);
+        });
+
+        this.isLoading = false;
     }
 
     /**
@@ -25,7 +38,7 @@ export default class Bookmarks extends Vue {
 
         if (remove) {
             this.isDeleting = true;
-            this.bookmarks = [...this.bookmarks.filter(b => b.id !== bookmarkId)];
+            this.bookmarks.delete(bookmarkId);
             await this.bookmarkService.deleteBookmark(bookmarkId);
             this.isDeleting = false;
         }

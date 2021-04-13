@@ -5,18 +5,17 @@ import Component from "vue-class-component";
 
 @Component
 export default class Bookmarks extends Vue {
-    // private bookmarks: Bookmark[] = [];
     private bookmarkService: BookmarkService = new BookmarkService();
-    private isDeleting: boolean = false;
-    private isLoading: boolean = false;
 
-    public constructor() {
-        super();
-        // Get bookmarks from Vuex state management
-        // this.bookmarks = this.$store.getters["BookmarkStore/bookmarksMap"];
+    public setIsLoading(status: boolean) {
+        this.$store.dispatch("BookmarkStore/updateIsLoading", status);
     }
 
-    get bookmarks(): Bookmark[] {
+    get isLoading(): boolean {
+        return this.$store.state.BookmarkStore.isLoading;
+    }
+
+    get bookmarks(): Promise<Bookmark[]> {
         return this.$store.getters["BookmarkStore/bookmarks"];
     }
 
@@ -27,8 +26,7 @@ export default class Bookmarks extends Vue {
         const remove: boolean = confirm(`Are you sure you want to delete this bookmark`);
 
         if (remove) {
-            this.isDeleting = true;
-            this.$store.state.bookmarkRegistry = [...this.bookmarks.filter(bm => bm.id !== bookmarkId)];
+            this.setIsLoading(true);
 
             try {
                 await this.bookmarkService.Bookmarks.delete(bookmarkId);
@@ -37,7 +35,7 @@ export default class Bookmarks extends Vue {
                 console.log(error);
             }
 
-            this.isDeleting = false;
+            this.setIsLoading(false);
         }
     }
 }

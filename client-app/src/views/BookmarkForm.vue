@@ -11,30 +11,30 @@
             name="title"
             label="Title"
             id="title"
-            v-model="bookmark.title"
+            v-model="selectedBookmark.title"
           ></v-text-field>
           <v-textarea
             outlined
             name="description"
             label="Description"
             id="description"
-            v-model="bookmark.description"
+            v-model="selectedBookmark.description"
           ></v-textarea>
           <v-text-field
             outlined
             name="url"
             label="Url"
             id="url"
-            v-model="bookmark.url"
+            v-model="selectedBookmark.url"
           ></v-text-field>
           <v-text-field
             outlined
             name="tags"
             label="Tags"
             id="tags"
-            v-model="bookmark.tags"
+            v-model="selectedBookmark.tags"
           ></v-text-field>
-          <v-overlay :value="isSaving">
+          <v-overlay :value="isLoading">
             <v-progress-circular
               indeterminate
               color="rgb(240, 42, 115)"
@@ -42,7 +42,7 @@
           </v-overlay>
         </v-form>
         <v-card-actions class="bookmark-form-actions">
-          <v-btn color="grey" :to="{ name: 'Bookmarks' }">cancel</v-btn>
+          <v-btn color="grey" @click="cancelForm()">cancel</v-btn>
           <v-btn v-if="!editMode" @click="createBookmark()" color="success"
             >create</v-btn
           >

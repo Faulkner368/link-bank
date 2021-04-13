@@ -56,7 +56,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-overlay :value="isDeleting || isLoading">
+    <v-overlay :value="isLoading">
       <v-progress-circular indeterminate color="white"></v-progress-circular>
     </v-overlay>
   </section>

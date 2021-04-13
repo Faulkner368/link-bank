@@ -25,6 +25,7 @@
             name="url"
             label="Url"
             id="url"
+            :rules="[validate.isUrl]"
             v-model="selectedBookmark.url"
           ></v-text-field>
           <v-text-field

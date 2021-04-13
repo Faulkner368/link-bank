@@ -3,9 +3,12 @@ import BookmarkService from "@/services/BookmarkService";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { v4 as uuidv4 } from "uuid";
+import ValidationRules from "@/shared/ValidationRules";
+
 
 @Component
 export default class BookmarkForm extends Vue {
+    private validate: ValidationRules = new ValidationRules();
     private bookmarkService: BookmarkService = new BookmarkService();
     private editMode: boolean = false;
 
@@ -26,6 +29,9 @@ export default class BookmarkForm extends Vue {
     }
 
     public async mounted() {
+        // To reset form / selectedBookmark in Vuex
+        this.$store.dispatch("BookmarkStore/resetSelectedBookmark");
+
         if (this.$route.params.id !== undefined) {
             this.editMode = true;
             try {
@@ -47,9 +53,6 @@ export default class BookmarkForm extends Vue {
             await this.bookmarkService.Bookmarks.create(this.selectedBookmark);
             this.$store.dispatch("BookmarkStore/createBookmark", this.selectedBookmark);
 
-            // To reset form / selectedBookmark in Vuex
-            this.$store.dispatch("BookmarkStore/resetSelectedBookmark");
-
             this.setIsLoading(false);
             this.$router.push({ name: "Bookmarks" });
         } catch (error) {
@@ -69,9 +72,6 @@ export default class BookmarkForm extends Vue {
             const response = await this.bookmarkService.Bookmarks.edit(this.selectedBookmark);
             this.$store.dispatch("BookmarkStore/updateBookmark", this.selectedBookmark);
 
-            // To reset form / selectedBookmark in Vuex
-            this.$store.dispatch("BookmarkStore/resetSelectedBookmark");
-
             this.setIsLoading(false);
             this.$router.push({ name: "Bookmarks" });
         } catch (error) {
@@ -82,8 +82,6 @@ export default class BookmarkForm extends Vue {
     }
 
     private cancelForm() {
-        // To reset form / selectedBookmark in Vuex
-        this.$store.dispatch("BookmarkStore/resetSelectedBookmark");
         this.$router.push({ name: "Bookmarks" });
     }
 }

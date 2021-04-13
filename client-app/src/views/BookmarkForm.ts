@@ -1,5 +1,5 @@
 import Bookmark from "@/types/Bookmark";
-import BookmarkService from "@/services/bookmarkService";
+import BookmarkService from "@/services/BookmarkService";
 import Vue from "vue";
 import Component from "vue-class-component";
 import { v4 as uuidv4 } from "uuid";
@@ -42,7 +42,6 @@ export default class BookmarkForm extends Vue {
     public async createBookmark(): Promise<void> {
         this.setIsLoading(true);
         this.selectedBookmark.id = uuidv4();
-        console.log(this.selectedBookmark);
 
         try {
             await this.bookmarkService.Bookmarks.create(this.selectedBookmark);

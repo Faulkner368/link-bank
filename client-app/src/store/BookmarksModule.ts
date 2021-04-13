@@ -1,4 +1,4 @@
-import BookmarkService from "@/services/bookmarkService";
+import BookmarkService from "@/services/BookmarkService";
 import Bookmark from "@/types/Bookmark";
 
 const bookmarkService = new BookmarkService();

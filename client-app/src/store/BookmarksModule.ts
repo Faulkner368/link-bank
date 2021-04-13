@@ -6,15 +6,26 @@ const bookmarkService = new BookmarkService();
 export const BookmarksModule = {
   namespaced: true,
   state: {
-    bookmarkRegistry: new Map<string, Bookmark>()
+    bookmarkRegistry: [],
+    isLoading: false,
+    title: "Vuex Title"
   },
   mutations: {
-    saveBookmarks(state: any, bookmarks: Map<string, Bookmark>) {
+    saveBookmarks(state: any, bookmarks: Bookmark[]) {
       bookmarks.forEach(bookmark => {
         bookmark.dateCreated = bookmark.dateCreated!.split("T")[0];
-        state.bookmarkRegistry.set(bookmark.id!, bookmark);
+        state.bookmarkRegistry.push(bookmark);
       });
-    }
+    },
+    saveBookmark(state: any, bookmark: Bookmark) {
+      state.bookmarkRegistry = [...state.bookmarkRegistry.filter((bm: { id: string; }) => bm.id !== bookmark.id), bookmark];
+    },
+    addBookmark(state: any, bookmark: Bookmark) {
+      state.bookmarkRegistry.push(bookmark);
+    },
+    removeBookmark(state: any, bookmarkId: string) {
+      state.bookmarkRegistry = [...state.bookmarkRegistry.filter((bm: { id: string; }) => bm.id !== bookmarkId)];
+    },
   },
   actions: {
     async loadBookmarks(context: any) {
@@ -25,14 +36,23 @@ export const BookmarksModule = {
       } catch (error) {
         console.log(error);
       }
+    },
+    updateBookmark(context: any, bookmark: Bookmark) {
+      context.commit("saveBookmark", bookmark);
+    },
+    createBookmark(context: any, bookmark: Bookmark) {
+      context.commit("addBookmark", bookmark);
+    },
+    deleteBookmark(context: any, bookmarkId: string) {
+      context.commit("removeBookmark", bookmarkId);
     }
   },
   getters: {
-    bookmarks(state: any): Map<string, Bookmark> {
+    bookmarks(state: any): Bookmark[] {
       return state.bookmarkRegistry;
     },
-  },
-  setters: {
-
+    title(state: any): string {
+      return state.title;
+    }
   }
 };

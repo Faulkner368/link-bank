@@ -38,6 +38,7 @@ export default class BookmarkForm extends Vue {
 
         try {
             await this.bookmarkService.Bookmarks.create(this.bookmark);
+            this.$store.dispatch("BookmarkStore/createBookmark", this.bookmark);
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +54,8 @@ export default class BookmarkForm extends Vue {
         this.isSaving = true;
 
         try {
-            await this.bookmarkService.Bookmarks.edit(this.bookmark);
+            const response = await this.bookmarkService.Bookmarks.edit(this.bookmark);
+            this.$store.dispatch("BookmarkStore/updateBookmark", this.bookmark);
         } catch (error) {
             console.log(error);
         }

@@ -3,7 +3,7 @@
     <v-row no-gutter>
       <v-col cols="7">
         <v-card
-          v-for="bookmark in getBookmarks()"
+          v-for="bookmark in bookmarks"
           :key="bookmark.id"
           class="bookmark-card"
           elevation="8"
@@ -34,7 +34,7 @@
                 title="edit"
                 rounded
                 class="bookmark-edit-btn"
-                color="grey"
+                color="#c4c1bb"
                 :to="{ name: 'BookmarkEdit', params: { id: bookmark.id } }"
                 ><v-icon>edit</v-icon></v-btn
               >

@@ -16,9 +16,9 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Bookmark>> GetBookmark(Guid id)
+        public async Task<IActionResult> GetBookmark(Guid id)
         {
-            return await Mediator.Send(new Details.Query{Id = id});
+            return HandleResult(await Mediator.Send(new Details.Query{Id = id}));
         }
 
         [HttpPost]

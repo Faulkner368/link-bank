@@ -25,8 +25,8 @@ LinkBank is a bookmark manager project for demonstration
 - Typescript
 
 ### ToDo
-- [ ] Add CRUD functionality
-- [ ] Implement Vuex state management
+- [x] Add CRUD functionality
+- [x] Implement Vuex state management
 - [ ] Resolve routing issues
 - [ ] Add styling to whole UI
 - [ ] Add form validation
@@ -37,3 +37,4 @@ LinkBank is a bookmark manager project for demonstration
 - [ ] Deploy to [Netlify](https://www.netlify.com/)
 - [ ] Document code
 - [ ] Audit module vulnerabilities
+- [ ] Add app tour

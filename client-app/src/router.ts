@@ -4,7 +4,8 @@ import { AppMixin } from "@/mixins/AppMixins";
 import HomePage from "@/views/HomePage";
 import Bookmarks from "@/views/Bookmarks";
 import BookmarkForm from "@/views/BookmarkForm";
-import NotFound from "./notfound/NotFound.vue";
+import NotFound from "./notfound/NotFound";
+import TestError from "@/errors/TestError";
 
 Vue.use(Router);
 
@@ -43,6 +44,11 @@ const router = new Router({
       path: "/bookmark/edit/:id",
       name: "BookmarkEdit",
       component: BookmarkForm,
+    },
+    {
+      path: "/test",
+      name: "TestError",
+      component: TestError
     }
   ],
 });

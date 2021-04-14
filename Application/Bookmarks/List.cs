@@ -5,17 +5,18 @@ using System.Threading.Tasks;
 using System.Threading;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Core;
 
 namespace Application.Bookmarks
 {
     public class List
     {
-        public class Query : IRequest<List<Bookmark>>
+        public class Query : IRequest<Result<List<Bookmark>>>
         {
 
         }
 
-        public class Handler : IRequestHandler<Query, List<Bookmark>>
+        public class Handler : IRequestHandler<Query, Result<List<Bookmark>>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -23,9 +24,9 @@ namespace Application.Bookmarks
                 _context = context;
             }
 
-            public async Task<List<Bookmark>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<List<Bookmark>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Bookmarks.ToListAsync();
+                return Result<List<Bookmark>>.Success(await _context.Bookmarks.ToListAsync(cancellationToken));
             }
         }
     }

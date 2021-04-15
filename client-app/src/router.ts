@@ -26,14 +26,7 @@ const router = new Router({
     {
       path: "/bookmarks",
       name: "Bookmarks",
-      component: Bookmarks,
-      // beforeEnter: (to, from, next) => {
-      //   if (!AppMixin.methods.isProduction()) {
-      //     next();
-      //   } else {
-      //     router.push({ name: "HomePage"});
-      //   }
-      // },
+      component: Bookmarks
     },
     {
       path: "/bookmark/create",
@@ -48,7 +41,14 @@ const router = new Router({
     {
       path: "/test",
       name: "TestError",
-      component: TestError
+      component: TestError,
+      // beforeEnter: (to, from, next) => {
+      //   if (!AppMixin.methods.isProduction()) {
+      //     next();
+      //   } else {
+      //     router.push({ name: "HomePage"});
+      //   }
+      // },
     }
   ],
 });

@@ -1,10 +1,21 @@
 import Vue from "vue";
 import axios from "axios";
 import Component from "vue-class-component";
+import ServerError from "@/types/ServerError";
 
 @Component
 export default class TestError extends Vue {
     private baseUrl: string = "http://localhost:5000/api/";
+    private errors: string[] | null = [];
+    private serverError: ServerError = { statusCode: 0, message: "", details: "null" };
+
+    public setError(errors: string[] | null) {
+        this.errors = errors;
+    }
+
+    public setServerError(error: ServerError) {
+        this.serverError = error;
+    }
 
     public handleNotFound() {
         axios.get(this.baseUrl + "buggy/not-found").catch(err => console.log(err.response));
@@ -15,7 +26,7 @@ export default class TestError extends Vue {
     }
 
     public handleServerError() {
-        axios.get(this.baseUrl + "buggy/server-error").catch(err => console.log(err.response));
+        axios.get(this.baseUrl + "buggy/server-error").catch(err => this.setServerError(err));
     }
 
     public handleUnauthorised() {
@@ -27,6 +38,18 @@ export default class TestError extends Vue {
     }
 
     public handleValidationError() {
-        axios.post(this.baseUrl + "bookmarks", {}).catch(err => console.log(err.response));
+        axios.post(this.baseUrl + "bookmarks", {}).catch(err => this.setError(err));
+    }
+
+    get serverErrorMessage(): string {
+        return this.serverError.message;
+    }
+
+    get serverErrorDetails(): string {
+        return this.serverError.details;
+    }
+
+    get serverErrorStatusCode(): number {
+        return this.serverError.statusCode;
     }
 }

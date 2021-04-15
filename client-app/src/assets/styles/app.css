@@ -6,6 +6,7 @@
 @import url("bookmarks.css");
 @import url("bookmarkform.css");
 @import url("homepage.css");
+@import url("errors.css");
 
 .v-main__wrap {
     width: 100%;

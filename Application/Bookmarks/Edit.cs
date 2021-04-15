@@ -1,7 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using AutoMapper;
 using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
@@ -9,12 +11,20 @@ namespace Application.Bookmarks
 {
     public class Edit
     {
-        public class Command: IRequest
+        public class Command: IRequest<Result<Unit>>
         {
             public Bookmark Bookmark { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command>
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(bm => bm.Bookmark).SetValidator(new BookmarkValidator());
+            }
+        }
+
+        public class Handler : IRequestHandler<Command, Result<Unit>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -25,15 +35,19 @@ namespace Application.Bookmarks
                 _mapper = mapper;
             }
 
-            public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 var bookmark = await _context.Bookmarks.FindAsync(request.Bookmark.Id);
 
+                if (bookmark == null) return null;
+
                 _mapper.Map(request.Bookmark, bookmark);
 
-                await _context.SaveChangesAsync();
+                var result = await _context.SaveChangesAsync() > 0;
 
-                return Unit.Value;
+                if (!result) return Result<Unit>.Failure("Failed to update bookmark");
+
+                return Result<Unit>.Success(Unit.Value);
             }
         }
     }

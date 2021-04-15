@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -9,12 +10,12 @@ namespace Application.Bookmarks
 {
     public class Details
     {
-        public class Query : IRequest<Bookmark>
+        public class Query : IRequest<Result<Bookmark>>
         {   
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Bookmark>
+        public class Handler : IRequestHandler<Query, Result<Bookmark>>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,9 +23,11 @@ namespace Application.Bookmarks
                 _context = context;
             }
 
-            public async Task<Bookmark> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<Bookmark>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Bookmarks.FindAsync(request.Id);
+                var bookmark = await _context.Bookmarks.FindAsync(request.Id);
+
+                return Result<Bookmark>.Success(bookmark);
             }
         }
     }

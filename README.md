@@ -9,8 +9,8 @@ LinkBank is a bookmark manager project for demonstration
 
 ### ToDo
 - [x] Add CRUD functionality
-- [ ] Add error handling
-- [ ] Add validation to endpoint inputs
+- [x] Add error handling
+- [x] Add validation to endpoint inputs
 - [ ] Add unit testing
 - [ ] Add user identity
 - [ ] Add pagination and filtering
@@ -29,7 +29,7 @@ LinkBank is a bookmark manager project for demonstration
 - [x] Implement Vuex state management
 - [ ] Resolve routing issues
 - [ ] Add styling to whole UI
-- [ ] Add form validation
+- [x] Add form validation
 - [ ] Add client side login
 - [ ] Make relevant routes private, logged only
 - [ ] Add client side filtering and sorting
@@ -38,3 +38,5 @@ LinkBank is a bookmark manager project for demonstration
 - [ ] Document code
 - [ ] Audit module vulnerabilities
 - [ ] Add app tour
+- [ ] Implement LESS for styling
+- [ ] Make responsive

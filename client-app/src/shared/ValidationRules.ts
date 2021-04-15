@@ -2,8 +2,35 @@ export default class ValidationRules {
   /**
    * Defines the form field as required
    */
-  public required(value: string) {
+  public required(value: string): boolean | string {
     return !!value || "Required";
+  }
+
+  /**
+   * Defines the tags as less than 21 characters
+   * @param value
+   * @returns boolean | string
+   */
+  public tagSize(value: string): boolean | string {
+    return value.length < 21 || `Tag must be shorter 20 characters or less; ${value.length - 20} characters to many`;
+  }
+
+  /**
+   * Defines the title as less than 51 characters
+   * @param value
+   * @returns boolean | string
+   */
+  public titleSize(value: string): boolean | string {
+    return value.length < 51 || `Title must be shorter 50 characters or less; ${value.length - 50} characters too many`;
+  }
+
+  /**
+   * Defines the description as less than 101 characters
+   * @param value
+   * @returns boolean | string
+   */
+  public descriptionSize(value: string): boolean | string {
+    return value.length < 101 || `Title must be shorter 100 characters or less; ${value.length - 100} characters to many`;
   }
 
   /**
@@ -12,7 +39,7 @@ export default class ValidationRules {
    * @returns boolean | string
    */
   public isUrl(value: string): boolean | string {
-    const pattern = /^(s:\/\/|sms:|tel:|mailto:|ftp:\/\/|http:\/\/|https:\/\/)[^ "]+$/;
+    const pattern = /^(sms:|tel:|mailto:|ftp:\/\/|http:\/\/|https:\/\/)[^ "]+$/;
     return pattern.test(value) || "URL is not valid";
   }
 }

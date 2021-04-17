@@ -1,10 +1,10 @@
 import Bookmark from "@/types/Bookmark";
 import ServerError from "@/types/ServerError";
+import { User, UserFormValues } from "@/types/User";
 import axios, { AxiosError, AxiosResponse, AxiosStatic } from "axios";
 import Vue from "vue";
-import Component from "vue-class-component";
+import router from "@/router";
 
-@Component
 export default class BookmarkService extends Vue {
     public Bookmarks = {
         list: () => this.requests.get<Bookmark[]>("/bookmarks"),
@@ -12,6 +12,12 @@ export default class BookmarkService extends Vue {
         create: (bookmark: Bookmark) => this.axios.post<void>("/bookmarks", bookmark),
         edit: (bookmark: Bookmark) => this.axios.put<void>(`/bookmarks/${bookmark.id}`, bookmark),
         delete: (id: string) => this.axios.delete<void>(`/bookmarks/${id}`)
+    };
+
+    public Account = {
+        current: () => this.requests.get<User>("/account"),
+        login: (user: UserFormValues) => this.requests.post<User>("/account/login", user),
+        register: (user: UserFormValues) => this.requests.post<User>("/account/register", user)
     };
 
     private axios: AxiosStatic = axios;
@@ -28,6 +34,15 @@ export default class BookmarkService extends Vue {
 
         this.axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL;
 
+        this.axios.interceptors.request.use(config => {
+            const token = window.localStorage.getItem("jwt");
+
+            if (token) {
+                config.headers.Authorization = `Bearer ${token}`;
+            }
+            return config;
+        });
+
         this.axios.interceptors.response.use(async response => {
             return response;
         }, (error: AxiosError) => {
@@ -42,7 +57,7 @@ export default class BookmarkService extends Vue {
                     if (config.method === "get" && data.errors.hasOwnProperty("id")) {
                         // Handles the invalid guid api response
                         this.$toast.error("Not found", {});
-                        this.$router.push({ name: "NotFound" });
+                        router.push({ name: "NotFound" });
                     }
 
                     if (data.errors) {
@@ -62,7 +77,7 @@ export default class BookmarkService extends Vue {
                     break;
                 case 404:
                     this.$toast.error("Not found", {});
-                    this.$router.push({ name: "NotFound" });
+                    router.push({ name: "NotFound" });
                     break;
                 case 500:
                     this.$toast.error("Server error", {});

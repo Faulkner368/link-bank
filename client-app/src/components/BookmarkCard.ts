@@ -30,12 +30,13 @@ export default class BookmarkCard extends Vue {
 
         if (remove) {
             this.setIsLoading(true);
+            this.$toast.error(`deleting "${this.bookmarks.find(bm => bm.id === bookmarkId)!.title}"`, {});
 
             try {
                 await this.bookmarkService.Bookmarks.delete(bookmarkId);
                 this.$store.dispatch("BookmarkStore/deleteBookmark", bookmarkId);
             } catch (error) {
-                console.log(error);
+                throw error;
             }
 
             this.setIsLoading(false);

@@ -42,4 +42,24 @@ export default class ValidationRules {
     const pattern = /^(sms:|tel:|mailto:|ftp:\/\/|http:\/\/|https:\/\/)[^ "]+$/;
     return pattern.test(value) || "URL is not valid";
   }
-}
+
+  /**
+   * Returns true if a valid email else a string error message
+   * @param value
+   * @returns boolean | string
+   */
+  public isEmail(value: string): boolean | string {
+    // TODO: not implemented
+    return true;
+  }
+
+  /**
+   * Returns true if a valid password else a string error message
+   * @param value
+   * @returns boolean | string
+   */
+   public isPassword(value: string): boolean | string {
+    // TODO: not implemented
+    return true;
+  }
+ }

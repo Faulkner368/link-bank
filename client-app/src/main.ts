@@ -13,14 +13,12 @@ const options = {
   position: "bottom-right",
   timeout: 5000,
   pauseOnHover: true,
-  hideProgressBar: true,
+  hideProgressBar: false,
 };
 
 Vue.use(Toast, options);
 
 Vue.config.productionTip = false;
-
-store.dispatch("BookmarkStore/loadBookmarks");
 
 new Vue({
   router,
@@ -28,3 +26,14 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount("#app");
+
+// JWT persistence
+const token = store.getters["AccountStore/userToken"];
+if (token) {
+  // If got a JWT call API for user
+  store.dispatch("AccountStore/getUser");
+  store.dispatch("BookmarkStore/loadBookmarks");
+} else {
+  // no JWT found but app is loaded
+  store.dispatch("AccountStore/setAppLoaded");
+}

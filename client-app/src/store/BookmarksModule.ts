@@ -10,9 +10,9 @@ export const BookmarksModule = {
    * All the apps state
    */
   state: {
-    bookmarkRegistry: [],
-    isLoading: false,
-    selectedBookmark: { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" },
+    bookmarkRegistry: [] as Bookmark[],
+    isLoading: false as boolean,
+    selectedBookmark: { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" } as Bookmark,
   },
 
   /**

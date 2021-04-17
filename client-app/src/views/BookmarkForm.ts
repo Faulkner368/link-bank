@@ -48,6 +48,10 @@ export default class BookmarkForm extends Vue {
     public async createBookmark(): Promise<void> {
         this.setIsLoading(true);
         this.selectedBookmark.id = uuidv4();
+        const now = new Date();
+        this.selectedBookmark.dateCreated = now.toISOString();
+
+        this.$toast(`Creating "${this.selectedBookmark.title}"`, {});
 
         try {
             await this.bookmarkService.Bookmarks.create(this.selectedBookmark);
@@ -67,6 +71,7 @@ export default class BookmarkForm extends Vue {
      */
     public async editBookmark(): Promise<void> {
         this.setIsLoading(true);
+        this.$toast(`Editing "${this.selectedBookmark.title}"`, {});
 
         try {
             const response = await this.bookmarkService.Bookmarks.edit(this.selectedBookmark);

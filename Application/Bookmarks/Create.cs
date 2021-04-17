@@ -34,7 +34,6 @@ namespace Application.Bookmarks
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                request.Bookmark.DateCreated = DateTime.UtcNow;
                 _context.Bookmarks.Add(request.Bookmark);
 
                 var result = await _context.SaveChangesAsync() > 0;

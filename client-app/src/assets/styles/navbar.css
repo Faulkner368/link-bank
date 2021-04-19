@@ -23,3 +23,11 @@
     content: "|";
     margin: 0 10px;
 }
+
+.create-btn-section > .v-btn:hover {
+    background-color: white;
+}
+
+.create-btn-section > .v-btn:hover > .v-btn__content {
+    color: black;
+}

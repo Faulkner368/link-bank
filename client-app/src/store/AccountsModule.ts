@@ -1,6 +1,7 @@
 import BookmarkService from "@/services/BookmarkService";
 import { User, UserFormValues } from "@/types/User";
 import router from "@/router";
+import store from "@/store/Store";
 
 const bookmarkService = new BookmarkService();
 
@@ -15,6 +16,8 @@ export const AccountsModule = {
     isLoading: false as boolean,
     token: window.localStorage.getItem("jwt") as string | null,
     appLoaded: false,
+    login: false,
+    register: false,
   },
 
   /**
@@ -35,6 +38,14 @@ export const AccountsModule = {
 
     setAppLoaded(state: any, loaded: boolean) {
       state.appLoaded = loaded;
+    },
+
+    setLogin(state: any, status: boolean) {
+      state.login = status;
+    },
+
+    setRegister(state: any, status: boolean) {
+      state.register = status;
     }
   },
 
@@ -54,6 +65,8 @@ export const AccountsModule = {
 
         context.commit("setToken", user.token);
         context.commit("setUser", user);
+        context.commit("setLogin", false);
+        store.dispatch("BookmarkStore/loadBookmarks");
       } catch (error) {
         context.commit("saveIsLoading", false);
         throw error;
@@ -81,12 +94,42 @@ export const AccountsModule = {
       context.commit("setAppLoaded", true);
     },
 
+    async register(context: any, creds: UserFormValues) {
+      context.commit("saveIsLoading", true);
+
+      try {
+        const user = await bookmarkService.Account.register(creds);
+
+        if (user.token) {
+          window.localStorage.setItem("jwt", user.token);
+        }
+
+        context.commit("setToken", user.token);
+        context.commit("setUser", user);
+        context.commit("setRegister", false);
+        store.dispatch("BookmarkStore/loadBookmarks");
+      } catch (error) {
+        context.commit("saveIsLoading", false);
+        throw error;
+      }
+
+      context.commit("saveIsLoading", false);
+    },
+
     updateIsLoading(context: any, status: boolean) {
       context.commit("saveIsLoading", status);
     },
 
     setAppLoaded(context: any) {
       context.commit("setAppLoaded", true);
+    },
+
+    setLogin(context: any, status: boolean) {
+      context.commit("setLogin", status);
+    },
+
+    setRegister(context: any, status: boolean) {
+      context.commit("setRegister", status);
     }
   },
 

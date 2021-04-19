@@ -32,7 +32,6 @@ const token = store.getters["AccountStore/userToken"];
 if (token) {
   // If got a JWT call API for user
   store.dispatch("AccountStore/getUser");
-  store.dispatch("BookmarkStore/loadBookmarks");
 } else {
   // no JWT found but app is loaded
   store.dispatch("AccountStore/setAppLoaded");

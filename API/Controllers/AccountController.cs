@@ -50,12 +50,14 @@ namespace API.Controllers
         {
             if (await _userManager.Users.AnyAsync(user => user.Email == registerDto.Email))
             {
-                return BadRequest("Email Taken");
+                ModelState.AddModelError("email", "Email taken");
+                return ValidationProblem();
             }
 
             if (await _userManager.Users.AnyAsync(user => user.UserName == registerDto.UserName))
             {
-                return BadRequest("UserName Taken");
+                ModelState.AddModelError("username", "Username taken");
+                return ValidationProblem();
             }
 
             var user = new AppUser

@@ -2,6 +2,7 @@ import BookmarkService from "@/services/BookmarkService";
 import Bookmark from "@/types/Bookmark";
 import Vue from "vue";
 import Component from "vue-class-component";
+import { Watch } from "vue-property-decorator";
 
 @Component
 export default class BookmarkCard extends Vue {

@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="isLoggedIn" persistent width="500">
+    <v-dialog v-model="loginDialog" persistent width="500">
       <v-card class="login-form-card">
         <v-card-title primary-title>
           <h3>Login</h3>
@@ -28,7 +28,10 @@
             {{ errorMessage }}
           </v-alert>
         </v-form>
-        <v-btn color="success" @click="login()">login</v-btn>
+      <v-card-actions class="login-form-actions">
+        <v-btn color="rgb(240, 42, 115)" @click="cancelForm()">cancel</v-btn>
+        <v-btn color="rgb(32, 167, 172)" @click="login()">login</v-btn>
+      </v-card-actions>
       </v-card>
     </v-dialog>
 </template>

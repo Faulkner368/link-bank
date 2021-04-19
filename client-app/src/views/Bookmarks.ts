@@ -8,4 +8,8 @@ export default class Bookmarks extends Vue {
     get isLoading(): boolean {
         return this.$store.state.BookmarkStore.isLoading;
     }
+
+    get isLoggedIn(): boolean {
+        return this.$store.getters["AccountStore/isLoggedIn"];
+    }
 }

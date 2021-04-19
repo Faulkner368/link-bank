@@ -11,7 +11,7 @@ export interface UserFormValues {
     userName?: string;
 }
 
-export interface LoginError {
+export interface AccountFormError {
     show: boolean;
     message: string;
 }

@@ -62,4 +62,26 @@ export default class ValidationRules {
     // TODO: not implemented
     return true;
   }
+
+  /**
+   * Returns true if no spaces in DisplayName, else false
+   * @param value
+   * @returns boolean | string
+   */
+  public isDisplayName(value: string): boolean | string {
+    const pattern = /^[^ "]+$/;
+    // TODO: not implemented fully
+    return pattern.test(value) || "Display name can't contain spaces";
+  }
+
+  /**
+   * Returns true if no spaces in UserName, else false
+   * @param value
+   * @returns boolean | string
+   */
+   public isUserName(value: string): boolean | string {
+    const pattern = /^[^ "]+$/;
+    // TODO: not implemented fully
+    return pattern.test(value) || "UserName can't contain spaces";
+  }
  }

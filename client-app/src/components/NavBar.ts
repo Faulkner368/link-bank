@@ -1,3 +1,4 @@
+import { User } from "@/types/User";
 import Vue from "vue";
 import Component from "vue-class-component";
 

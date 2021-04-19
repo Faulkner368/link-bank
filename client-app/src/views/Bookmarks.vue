@@ -2,7 +2,20 @@
   <section class="bookmarks">
     <v-row no-gutter>
       <v-col cols="7">
-        <BookmarkCard />
+        <BookmarkCard v-if="isLoggedIn" />
+        <section v-if="!isLoggedIn">
+          <v-card
+            class="not-loggedisLoggedIn-in"
+            elevation="8"
+          >
+          <v-card-title primary-title>
+            <h1>You are not logged in.</h1>
+          </v-card-title>
+          <v-card-actions>
+            <v-btn color="rgb(32, 167, 172)" :to="{ name: 'HomePage' }">login</v-btn>
+          </v-card-actions>
+          </v-card>
+        </section>
       </v-col>
       <v-col cols="5">
         <BookmarkFilter />

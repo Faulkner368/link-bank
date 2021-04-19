@@ -4,8 +4,8 @@
       <v-icon class="menu-icon">bookmarks</v-icon>
       <v-toolbar-title @click="goTo('/')">Link Bank</v-toolbar-title>
       <v-toolbar-title v-if="isLoggedIn" @click="goTo('/bookmarks')" class="middle-menu-item">Bookmarks</v-toolbar-title>
-      <v-toolbar-title v-if="isLoggedIn">
-        <v-btn color="success" @click="goTo('/bookmark/create')">create</v-btn>
+      <v-toolbar-title class="create-btn-section" v-if="isLoggedIn">
+        <v-btn outlined @click="goTo('/bookmark/create')">create</v-btn>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title v-if="isLoggedIn" title="Logout">

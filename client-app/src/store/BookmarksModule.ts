@@ -51,6 +51,7 @@ export const BookmarksModule = {
   actions: {
     async loadBookmarks(context: any) {
       context.commit("saveIsLoading", true);
+      context.commit("saveBookmarks", [] as Bookmark[]);
 
       try {
         const bookmarks = await bookmarkService.Bookmarks.list();

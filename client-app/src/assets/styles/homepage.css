@@ -14,6 +14,38 @@
     color: white;
 }
 
+.homepage-title {
+    margin-bottom: 10px;
+}
+
 .v-btn__content {
     color: white;
+}
+
+.not-logged-in > .v-btn {
+    margin-right: 5px;
+}
+
+.not-logged-in > .v-btn:hover {
+    background-color: white;
+}
+
+.not-logged-in > .v-btn:hover > .v-btn__content {
+    color: black;
+}
+
+.register-form-actions > .v-btn {
+    margin-right: 5px;
+}
+
+.login-form-actions > .v-btn {
+    margin-right: 5px;
+}
+
+.login-form-card {
+    padding: 20px;
+}
+
+.register-form-card {
+    padding: 20px;
 }

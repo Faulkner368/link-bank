@@ -87,6 +87,7 @@ export const AccountsModule = {
       try {
         const user = await bookmarkService.Account.current();
         context.commit("setUser", user);
+        store.dispatch("BookmarkStore/loadBookmarks");
       } catch (error) {
         console.log(error);
       }

@@ -7,6 +7,18 @@ import Component from "vue-class-component";
 export default class BookmarkCard extends Vue {
     private bookmarkService: BookmarkService = new BookmarkService();
 
+    public toggleCard(element: HTMLElement) {
+        const bookmarkCard = element.parentElement;
+
+        if (bookmarkCard!.style.height === "40px") {
+            bookmarkCard!.style.height = "unset";
+            bookmarkCard!.style.overflow = "unset";
+        } else {
+            bookmarkCard!.style.height = "40px";
+            bookmarkCard!.style.overflow = "hidden";
+        }
+    }
+
     /**
      * Gets all bookmarks from Vuex
      */
@@ -30,12 +42,13 @@ export default class BookmarkCard extends Vue {
 
         if (remove) {
             this.setIsLoading(true);
+            this.$toast.error(`deleting "${this.bookmarks.find(bm => bm.id === bookmarkId)!.title}"`, {});
 
             try {
                 await this.bookmarkService.Bookmarks.delete(bookmarkId);
                 this.$store.dispatch("BookmarkStore/deleteBookmark", bookmarkId);
             } catch (error) {
-                console.log(error);
+                throw error;
             }
 
             this.setIsLoading(false);

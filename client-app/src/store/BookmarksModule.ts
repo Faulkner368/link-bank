@@ -1,5 +1,6 @@
 import BookmarkService from "@/services/BookmarkService";
 import Bookmark from "@/types/Bookmark";
+import store from "@/store/Store";
 
 const bookmarkService = new BookmarkService();
 
@@ -10,9 +11,9 @@ export const BookmarksModule = {
    * All the apps state
    */
   state: {
-    bookmarkRegistry: [],
-    isLoading: false,
-    selectedBookmark: { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" },
+    bookmarkRegistry: [] as Bookmark[],
+    isLoading: false as boolean,
+    selectedBookmark: { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" } as Bookmark,
   },
 
   /**
@@ -50,16 +51,20 @@ export const BookmarksModule = {
    */
   actions: {
     async loadBookmarks(context: any) {
-      context.commit("saveIsLoading", true);
 
-      try {
-        const bookmarks = await bookmarkService.Bookmarks.list();
-        context.commit("saveBookmarks", bookmarks);
-      } catch (error) {
-        console.log(error);
+      if (store.getters["BookmarkStore/bookmarks"].length < 1) {
+        context.commit("saveIsLoading", true);
+        context.commit("saveBookmarks", [] as Bookmark[]);
+
+        try {
+          const bookmarks = await bookmarkService.Bookmarks.list();
+          context.commit("saveBookmarks", bookmarks);
+        } catch (error) {
+          console.log(error);
+        }
+
+        context.commit("saveIsLoading", false);
       }
-
-      context.commit("saveIsLoading", false);
     },
     updateBookmark(context: any, bookmark: Bookmark) {
       context.commit("saveBookmark", bookmark);

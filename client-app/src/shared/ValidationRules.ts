@@ -42,4 +42,46 @@ export default class ValidationRules {
     const pattern = /^(sms:|tel:|mailto:|ftp:\/\/|http:\/\/|https:\/\/)[^ "]+$/;
     return pattern.test(value) || "URL is not valid";
   }
-}
+
+  /**
+   * Returns true if a valid email else a string error message
+   * @param value
+   * @returns boolean | string
+   */
+  public isEmail(value: string): boolean | string {
+    // TODO: not implemented
+    return true;
+  }
+
+  /**
+   * Returns true if a valid password else a string error message
+   * @param value
+   * @returns boolean | string
+   */
+   public isPassword(value: string): boolean | string {
+    // TODO: not implemented
+    return true;
+  }
+
+  /**
+   * Returns true if no spaces in DisplayName, else false
+   * @param value
+   * @returns boolean | string
+   */
+  public isDisplayName(value: string): boolean | string {
+    const pattern = /^[^ "]+$/;
+    // TODO: not implemented fully
+    return pattern.test(value) || "Display name can't contain spaces";
+  }
+
+  /**
+   * Returns true if no spaces in UserName, else false
+   * @param value
+   * @returns boolean | string
+   */
+   public isUserName(value: string): boolean | string {
+    const pattern = /^[^ "]+$/;
+    // TODO: not implemented fully
+    return pattern.test(value) || "UserName can't contain spaces";
+  }
+ }

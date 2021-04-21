@@ -46,11 +46,11 @@
           </v-overlay>
         </v-form>
         <v-card-actions class="bookmark-form-actions">
-          <v-btn color="grey" @click="cancelForm()">cancel</v-btn>
-          <v-btn v-if="!editMode" @click="createBookmark()" color="success"
+          <v-btn color="rgb(240, 42, 115)" @click="cancelForm()">cancel</v-btn>
+          <v-btn v-if="!editMode" @click="createBookmark()" color="rgb(32, 167, 172)"
             >create</v-btn
           >
-          <v-btn v-if="editMode" @click="editBookmark()" color="success"
+          <v-btn v-if="editMode" @click="editBookmark()" color="rgb(32, 167, 172)"
             >edit</v-btn
           >
         </v-card-actions>

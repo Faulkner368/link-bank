@@ -5,8 +5,9 @@
       :key="bookmark.id"
       class="bookmark-card"
       elevation="8"
+      height="40"
     >
-      <v-app-bar class="bookmark-card-bar" dark height="40">
+      <v-app-bar class="bookmark-card-bar" dark height="40" @click="toggleCard($event.currentTarget)">
         <v-card-title primary-title>
           <h3>{{ bookmark.title }}</h3>
         </v-card-title>
@@ -26,7 +27,7 @@
 
       <v-card-text>
         <p class="bookmark-description">{{ bookmark.description }}</p>
-        <span class="bookmark-link">{{ bookmark.url }}</span>
+        <a :href="bookmark.url" target="_blank" class="bookmark-link">{{ bookmark.url }}</a>
       </v-card-text>
       <hr />
       <v-card-actions class="bookmark-card-actions">

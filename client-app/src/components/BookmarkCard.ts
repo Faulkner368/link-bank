@@ -7,6 +7,18 @@ import Component from "vue-class-component";
 export default class BookmarkCard extends Vue {
     private bookmarkService: BookmarkService = new BookmarkService();
 
+    public toggleCard(element: HTMLElement) {
+        const bookmarkCard = element.parentElement;
+
+        if (bookmarkCard!.style.height === "40px") {
+            bookmarkCard!.style.height = "unset";
+            bookmarkCard!.style.overflow = "unset";
+        } else {
+            bookmarkCard!.style.height = "40px";
+            bookmarkCard!.style.overflow = "hidden";
+        }
+    }
+
     /**
      * Gets all bookmarks from Vuex
      */

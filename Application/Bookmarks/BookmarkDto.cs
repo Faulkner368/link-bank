@@ -1,8 +1,9 @@
 using System;
+using Domain;
 
-namespace Domain
+namespace Application.Bookmarks
 {
-    public class Bookmark
+    public class BookmarkDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
@@ -14,6 +15,6 @@ namespace Domain
         public DateTime DateCreated { get; set; }
 
         public string Tags { get; set; }
-        public AppUser Owner { get; set; }
+        public AppUserDto Owner { get; set; }
     }
 }

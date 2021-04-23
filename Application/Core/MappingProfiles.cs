@@ -1,3 +1,4 @@
+using Application.Bookmarks;
 using AutoMapper;
 using Domain;
 
@@ -8,6 +9,9 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Bookmark, Bookmark>();
+            CreateMap<Bookmark, BookmarkDto>();
+
+            CreateMap<AppUser, AppUserDto>();
         }
     }
 }

@@ -14,5 +14,6 @@ namespace Domain
         public DateTime DateCreated { get; set; }
 
         public string Tags { get; set; }
+        public AppUser Owner { get; set; }
     }
 }

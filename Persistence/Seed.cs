@@ -24,7 +24,9 @@ namespace Persistence
             }
 
             if (context.Bookmarks.Any()) return;
-            
+
+            var owner = await userManager.FindByEmailAsync("bob@test.com");
+
             var bookmarks = new List<Bookmark>
             {
                 new Bookmark
@@ -33,7 +35,8 @@ namespace Persistence
                     Description = "Google...",
                     Url = "https://google.co.uk",
                     Tags = "search engine",
-                    DateCreated = DateTime.Now.AddMonths(-2)
+                    DateCreated = DateTime.Now.AddMonths(-2),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -41,15 +44,17 @@ namespace Persistence
                     Description = "Facebook...",
                     Url = "https://facebook.com",
                     Tags = "social media",
-                    DateCreated = DateTime.Now.AddMonths(-1)
+                    DateCreated = DateTime.Now.AddMonths(-1),
+                    Owner = owner
                 },
                 new Bookmark
-                {   
+                {
                     Title = "Twitter",
                     Description = "Twitter...",
                     Url = "https://twitter.com",
                     Tags = "social media",
-                    DateCreated = DateTime.Now.AddMonths(1)
+                    DateCreated = DateTime.Now.AddMonths(1),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -57,7 +62,8 @@ namespace Persistence
                     Description = "BBC news...",
                     Url = "https://bbc.co.uk/news",
                     Tags = "news",
-                    DateCreated = DateTime.Now.AddMonths(2)
+                    DateCreated = DateTime.Now.AddMonths(2),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -65,7 +71,8 @@ namespace Persistence
                     Description = "LinkedIn...",
                     Url = "https://linkedin.com",
                     Tags = "social media",
-                    DateCreated = DateTime.Now.AddMonths(3)
+                    DateCreated = DateTime.Now.AddMonths(3),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -73,7 +80,8 @@ namespace Persistence
                     Description = "Amazon...",
                     Url = "https://amazon.co.uk",
                     Tags = "general shop",
-                    DateCreated = DateTime.Now.AddMonths(4)
+                    DateCreated = DateTime.Now.AddMonths(4),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -81,7 +89,8 @@ namespace Persistence
                     Description = "Ebay...",
                     Url = "https://ebay.com",
                     Tags = "auction",
-                    DateCreated = DateTime.Now.AddMonths(5)
+                    DateCreated = DateTime.Now.AddMonths(5),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -89,7 +98,8 @@ namespace Persistence
                     Description = "Indeed...",
                     Url = "https://indeed.co.uk",
                     Tags = "jobs",
-                    DateCreated = DateTime.Now.AddMonths(6)
+                    DateCreated = DateTime.Now.AddMonths(6),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -97,7 +107,8 @@ namespace Persistence
                     Description = "Udemy...",
                     Url = "https://udemy.com",
                     Tags = "course",
-                    DateCreated = DateTime.Now.AddMonths(7)
+                    DateCreated = DateTime.Now.AddMonths(7),
+                    Owner = owner
                 },
                 new Bookmark
                 {
@@ -105,7 +116,8 @@ namespace Persistence
                     Description = "Met Office weather...",
                     Url = "https://metoffice.co.uk",
                     Tags = "weather",
-                    DateCreated = DateTime.Now.AddMonths(8)
+                    DateCreated = DateTime.Now.AddMonths(8),
+                    Owner = owner
                 }
             };
 

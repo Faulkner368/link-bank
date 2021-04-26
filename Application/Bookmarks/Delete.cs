@@ -2,16 +2,18 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Application.Interfaces;
 using AutoMapper;
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Bookmarks
 {
     public class Delete
     {
-        public class Command: IRequest<Result<Unit>>
+        public class Command : IRequest<Result<Unit>>
         {
             public Guid Id { get; set; }
         }
@@ -27,6 +29,7 @@ namespace Application.Bookmarks
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
+                
                 var bookmark = await _context.Bookmarks.FindAsync(request.Id);
 
                 if (bookmark == null) return null;

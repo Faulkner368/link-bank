@@ -4,6 +4,7 @@ using Application.Core;
 using AutoMapper;
 using Domain;
 using FluentValidation;
+using Application.Interfaces;
 using MediatR;
 using Persistence;
 
@@ -11,7 +12,7 @@ namespace Application.Bookmarks
 {
     public class Edit
     {
-        public class Command: IRequest<Result<Unit>>
+        public class Command : IRequest<Result<Unit>>
         {
             public Bookmark Bookmark { get; set; }
         }
@@ -36,12 +37,14 @@ namespace Application.Bookmarks
             }
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
-            {
+            {                
                 var bookmark = await _context.Bookmarks.FindAsync(request.Bookmark.Id);
 
                 if (bookmark == null) return null;
 
                 _mapper.Map(request.Bookmark, bookmark);
+
+                _context.Users.Attach(bookmark.Owner);
 
                 var result = await _context.SaveChangesAsync() > 0;
 

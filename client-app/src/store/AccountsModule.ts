@@ -78,6 +78,7 @@ export const AccountsModule = {
     async logout(context: any) {
       context.commit("setToken", null);
       window.localStorage.removeItem("jwt");
+      store.dispatch("BookmarkStore/resetBookmarks");
       context.commit("setUser", null);
       router.push({ name: "HomePage" });
     },

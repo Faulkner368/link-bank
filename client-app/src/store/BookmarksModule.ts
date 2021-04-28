@@ -43,6 +43,9 @@ export const BookmarksModule = {
     },
     unsetSelectedBookmark(state: any) {
       state.selectedBookmark = { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" };
+    },
+    resetBookmarks(state: any) {
+      state.bookmarkRegistry = [] as Bookmark[];
     }
   },
 
@@ -83,6 +86,9 @@ export const BookmarksModule = {
     },
     resetSelectedBookmark(context: any) {
       context.commit("unsetSelectedBookmark");
+    },
+    resetBookmarks(context: any) {
+      context.commit("resetBookmarks");
     }
   },
 

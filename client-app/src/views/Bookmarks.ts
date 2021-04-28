@@ -12,4 +12,8 @@ export default class Bookmarks extends Vue {
     get isLoggedIn(): boolean {
         return this.$store.getters["AccountStore/isLoggedIn"];
     }
+
+    get showNoBookmarks(): boolean {
+        return this.isLoggedIn && this.$store.getters["BookmarkStore/bookmarks"].length === 0;
+    }
 }

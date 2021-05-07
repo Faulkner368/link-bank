@@ -30,6 +30,8 @@
       </v-col>
       <v-col cols="5">
         <BookmarkFilter />
+        <BookmarkSort />
+        <BookmarkSearch />
       </v-col>
     </v-row>
     <v-overlay :value="isLoading">

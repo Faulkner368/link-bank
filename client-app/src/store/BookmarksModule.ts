@@ -14,6 +14,8 @@ export const BookmarksModule = {
     bookmarkRegistry: [] as Bookmark[],
     isLoading: false as boolean,
     selectedBookmark: { id: "", title: "", description: "", url: "", dateCreated: undefined, tags: "" } as Bookmark,
+    filter: "",
+    sortBy: "title"
   },
 
   /**
@@ -46,6 +48,12 @@ export const BookmarksModule = {
     },
     resetBookmarks(state: any) {
       state.bookmarkRegistry = [] as Bookmark[];
+    },
+    setFilter(state: any, tag: string) {
+      state.filter = tag;
+    },
+    setSortBy(state: any, sortBy: string) {
+      state.sortBy = sortBy;
     }
   },
 
@@ -89,6 +97,12 @@ export const BookmarksModule = {
     },
     resetBookmarks(context: any) {
       context.commit("resetBookmarks");
+    },
+    updateFilter(context: any, tag: string) {
+      context.commit("setFilter", tag);
+    },
+    updateSortBy(context: any, sortBy: string) {
+      context.commit("setSortBy", sortBy);
     }
   },
 
@@ -120,6 +134,17 @@ export const BookmarksModule = {
      */
     selectedBookmark(state: any): Bookmark {
       return state.selectedBookmark as Bookmark;
+    },
+    getFilter(state: any): string {
+      return state.filter;
+    },
+    getSortBy(state: any): string {
+      return state.sortBy;
+    },
+    getTags(state: any): string[] {
+      const tags = state.bookmarkRegistry.map((bm: Bookmark) => bm.tags);
+
+      return tags as string[];
     }
   }
 };

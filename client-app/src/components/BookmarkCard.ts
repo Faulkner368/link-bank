@@ -19,11 +19,26 @@ export default class BookmarkCard extends Vue {
         }
     }
 
+    get filter(): string {
+        return this.$store.getters["BookmarkStore/getFilter"];
+    }
+
+    get sortBy(): string {
+        return this.$store.getters["BookmarkStore/getSortBy"];
+    }
+
     /**
      * Gets all bookmarks from Vuex
      */
     get bookmarks(): Bookmark[] {
-        return this.$store.getters["BookmarkStore/bookmarks"];
+        const bookmarks: Bookmark[] =  this.$store.getters["BookmarkStore/bookmarks"];
+
+        if (this.filter !== "") {
+            const filteredBookmarks = bookmarks.filter(bm => bm.tags.includes(this.filter));
+            return filteredBookmarks.sort((a: any, b: any) => (a[this.sortBy] > b[this.sortBy]) ? 1 : -1);
+        } else  {
+            return bookmarks.sort((a: any, b: any) => (a[this.sortBy] > b[this.sortBy]) ? 1 : -1);
+        }
     }
 
     /**

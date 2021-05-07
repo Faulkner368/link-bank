@@ -12,7 +12,7 @@ LinkBank is a bookmark manager project for demonstration
 - [x] Add error handling
 - [x] Add validation to endpoint inputs
 - [ ] Add unit testing
-- [ ] Add user identity
+- [x] Add user identity
 - [ ] Add pagination and filtering
 - [ ] Prep for production
 - [ ] Deploy to [Heroku](https://www.heroku.com/)
@@ -27,10 +27,10 @@ LinkBank is a bookmark manager project for demonstration
 ### ToDo
 - [x] Add CRUD functionality
 - [x] Implement Vuex state management
-- [ ] Resolve routing issues
+- [x] Resolve routing issues
 - [ ] Add styling to whole UI
 - [x] Add form validation
-- [ ] Add client side login
+- [x] Add client side login
 - [ ] Make relevant routes private, logged only
 - [ ] Add client side filtering and sorting
 - [ ] Prep for production

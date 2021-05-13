@@ -108,6 +108,9 @@ namespace API
 
             app.UseRouting();
 
+            app.UseDefaultFiles(); // Looks inside wwwroot folder for index file
+            app.UseStaticFiles();
+
             app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
@@ -116,6 +119,7 @@ namespace API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }

@@ -1,0 +1,13 @@
+.bookmark-form-col{
+    margin: auto;
+}
+
+.bookmark-form {
+    width: 70%;
+    margin: auto;
+}
+
+.bookmark-form-actions {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -5,7 +5,7 @@ import ServerError from "@/types/ServerError";
 
 @Component
 export default class TestError extends Vue {
-    private baseUrl: string = "http://localhost:5000/api/";
+    private baseUrl: string = `${process.env.VUE_APP_API_BASE_URL}/`;
     private errors: string[] | null = [];
     private serverError: ServerError = { statusCode: 0, message: "", details: "null" };
 

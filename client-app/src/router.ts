@@ -27,13 +27,13 @@ const routes: RouteConfig[] = [
     path: "/bookmarks",
     name: "Bookmarks",
     component: Bookmarks,
-    // beforeEnter: (to, from, next) => {
-    //   if (store.getters["AccountStore/isLoggedIn"]) {
-    //     next();
-    //   } else {
-    //     router.push({ name: "HomePage"});
-    //   }
-    // },
+    beforeEnter: (to, from, next) => {
+      if (store.getters["AccountStore/isLoggedIn"]) {
+        next();
+      } else {
+        router.push({ name: "HomePage"});
+      }
+    },
   },
   {
     path: "/bookmark/create",

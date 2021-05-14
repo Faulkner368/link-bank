@@ -2,9 +2,7 @@
   <v-app>
     <NavBar></NavBar>
     <v-main>
-      <v-container>
-        <router-view></router-view>
-      </v-container>
+      <router-view></router-view>
     </v-main>
     <v-overlay :value="!appLoaded">
       <v-progress-circular

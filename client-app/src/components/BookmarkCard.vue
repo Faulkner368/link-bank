@@ -8,8 +8,8 @@
       height="40"
     >
       <v-app-bar class="bookmark-card-bar" dark height="40" @click="toggleCard($event.currentTarget)">
-        <v-card-title primary-title>
-          <h3>{{ bookmark.title }}</h3>
+        <v-card-title primary-title class="bookmark-title">
+          <h3 :title="bookmark.title">{{ bookmark.title }}</h3>
         </v-card-title>
         <v-spacer></v-spacer>
         <v-btn @click="deleteBookmark(bookmark.id)" title="delete" fab icon>

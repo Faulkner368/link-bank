@@ -1,5 +1,12 @@
-.bookmark-form-col{
-    margin: auto;
+.bookmark-form-section {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.bookmark-form-card {
+    margin: 10px;
+    width: 60%;
 }
 
 .bookmark-form {
@@ -10,4 +17,10 @@
 .bookmark-form-actions {
     display: flex;
     justify-content: flex-end;
+}
+
+@media screen and (max-width: 680px) {
+    .bookmark-form-card {
+        width: 100%;
+    }
 }

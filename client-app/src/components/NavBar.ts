@@ -33,4 +33,12 @@ export default class NavBar extends Vue {
     private showNavBar(): boolean {
         return this.$route.name !== "HomePage";
     }
+
+    /**
+     * Returns true if current route is /bookmarks else false.
+     * Used to show menu item if not bookmarks route.
+     */
+    get bookmarksPage(): boolean {
+        return this.$route.path === "/bookmarks";
+    }
 }

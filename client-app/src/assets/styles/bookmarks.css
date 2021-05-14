@@ -1,30 +1,15 @@
-.bookmark-card {
-    margin-bottom: 20px;
-    /* height: 40px; */
-    overflow: hidden;
+.bookmarks-section {
+    padding: 10px;
+    width: 60%;
+    margin: 50px auto;
 }
 
-.bookmark-card-bar {
-    background-image: linear-gradient(135deg, rgb(240, 42, 115) 0%, rgb(33, 138, 174) 69%, rgb(32, 167, 172) 89%);
+.bookmark-list {
+    margin-top: 10px;
 }
 
-.bookmark-card-actions {
-    margin: 0 10px;
-}
-
-.tags {
-    width: 50%;
-}
-
-.bookmark-description {
-    font-size: 16px;
-    color: black;
-}
-
-.bookmark-link {
-    font-size: 16px;
-}
-
-.bookmark-edit-btn {
-    margin-right: 5px;
+@media screen and (max-width: 680px) {
+    .bookmarks-section {
+        width: 100%;
+    }
 }

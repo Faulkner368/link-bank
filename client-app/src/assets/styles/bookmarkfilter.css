@@ -3,6 +3,10 @@
     padding: 10px;
 }
 
+.controls-title {
+    font-size: 1em;
+}
+
 .filter > .v-card__text {
     padding: 0;
 }

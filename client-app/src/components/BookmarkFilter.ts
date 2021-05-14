@@ -16,7 +16,7 @@ export default class BookmarkFilter extends Vue {
         } else if (this.selectedProp === "" && this.selectedTag !== "") {
             this.showUpdateBtn = false;
             this.filter();
-        } else if(this.selectedProp !== "" && this.selectedTag === "") {
+        } else if (this.selectedProp !== "" && this.selectedTag === "") {
             this.showUpdateBtn = false;
             this.sort();
         }

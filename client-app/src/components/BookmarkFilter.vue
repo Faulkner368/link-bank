@@ -2,7 +2,7 @@
   <section>
     <v-card elevation="8">
       <v-card-title primary-title>
-        <h1>Controls</h1>
+        <h1 class="controls-title">Controls</h1>
       </v-card-title>
 
       <div class="controls" v-if="showUpdateBtn">

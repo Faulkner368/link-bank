@@ -2,8 +2,8 @@
   <section class="bookmarks-section">
     <div class="bookmark-controls">
       <BookmarkFilter />
-      <BookmarkSort />
-      <BookmarkSearch />
+      <!-- <BookmarkSort />
+      <BookmarkSearch /> -->
     </div>
     <div class="bookmark-list">
       <BookmarkCard v-if="isLoggedIn" />

@@ -1,0 +1,33 @@
+.controls {
+    display: flex;
+    padding: 10px;
+}
+
+.filter > .v-card__text {
+    padding: 0;
+}
+
+.filter {
+    width: 50%;
+}
+
+.sort > .v-card__text {
+    padding: 0;
+}
+
+.sort {
+    width: 50%;
+}
+
+.actions {
+    padding: 0px 10px 10px 10px;
+    width: 100%;
+}
+
+.update-btn {
+    width: 100%;
+}
+
+.reset-btn {
+    width: 100%;
+}

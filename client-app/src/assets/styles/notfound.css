@@ -1,0 +1,26 @@
+.not-found {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.not-found-card {
+    width: 60%;
+}
+
+.menu-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-button {
+    margin-top: 6px;
+}
+
+@media screen and (max-width: 680px) {
+
+    .not-found-card {
+        width: 100%;
+    }
+}

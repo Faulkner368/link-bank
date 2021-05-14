@@ -2,20 +2,44 @@
   <section>
     <v-card elevation="8">
       <v-card-title primary-title>
-        <h1>Filter</h1>
+        <h1 class="controls-title">Controls</h1>
       </v-card-title>
-      <v-card-text>
-        <label for="tag-filter">Filter by tag</label>
-          <v-autocomplete
-            v-model="selectedTag"
-            value=""
-            :items="tags"
-            dense
-          ></v-autocomplete>
-        <v-btn v-if="showFilterBtn" @click="filter()" color="rgb(32, 167, 172)">filter</v-btn>
-        <v-btn v-if="!showFilterBtn" @click="reset()" color="rgb(240, 42, 115)">reset</v-btn>
-      </v-card-text>
-      <v-overlay :value="overlay" absolute></v-overlay>
+
+      <div class="controls" v-if="showUpdateBtn">
+        <!-- Filter -->
+        <div class="filter">
+          <v-card-text>
+            <label for="tag-filter">Filter by tag</label>
+            <v-autocomplete
+              v-model="selectedTag"
+              value=""
+              :items="tags"
+              dense
+            ></v-autocomplete>
+          </v-card-text>
+        </div>
+
+        <!-- Sort -->
+        <div class="sort">
+          <v-card-text>
+            <label for="tag-filter">Sort by</label>
+            <v-autocomplete
+              v-model="selectedProp"
+              value=""
+              :items="props"
+              dense
+            ></v-autocomplete>
+          </v-card-text>
+        </div>
+      </div>
+
+      <div class="actions">
+        <v-btn v-if="showUpdateBtn" class="update-btn" @click="update()" color="rgb(32, 167, 172)">update</v-btn>
+        <v-btn v-if="!showUpdateBtn" class="reset-btn" @click="reset()" color="rgb(240, 42, 115)">reset</v-btn>
+      </div>
+
+      <!-- Search -->
+
     </v-card>
   </section>
 </template>
